@@ -1,0 +1,10 @@
+A	Administrational; countries, states, regions, etc.
+H	Hydrographic; waterbodies, ice formations, geysers, tanks, dried-up watercourses, etc.
+L	Land; parks, reserves, developments, homogeneous land areas
+P	Populated; cities, towns, villages, settlements, etc.
+R	Routes; roads, railways, paths, etc.
+S	Sites; spots, structures, farms, parking lots, camps, etc.
+T	Topology; mountain, hill, rock, etc.
+U	Underwater; basins, moats, reefs, sheves, trenches etc.
+V	Vegetation; forest, heath, etc.
+	Not Available

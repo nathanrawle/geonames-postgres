@@ -7,4 +7,4 @@ S	Sites; spots, structures, farms, parking lots, camps, etc.
 T	Topology; mountain, hill, rock, etc.
 U	Underwater; basins, moats, reefs, sheves, trenches etc.
 V	Vegetation; forest, heath, etc.
-	Not Available
+N	null

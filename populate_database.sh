@@ -3,7 +3,7 @@
 DDIR_ABS="$HOME/projects/data/sourced/geonames"
 PSQL="psql -X --username=db_maker --dbname=geonames -t --no-align -c"
 
-$PSQL "TRUNCATE TABLE geonames, feature_classes, feature_codes, country_info, admin1_codes, admin2_codes"
+$PSQL "TRUNCATE TABLE geonames, feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, alt_names, iso_language_codes"
 
 $PSQL "\copy feature_classes FROM $DDIR_ABS/feature_classes.txt DELIMITER E'\t' CSV"
 
@@ -19,3 +19,7 @@ awk -F $'\t' '{ print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9
 | $PSQL "\copy geonames FROM STDIN DELIMITER E'\t' CSV"
 
 sed -E 's/^([A-Z]{2})\.([A-Z0-9]+)\./\1\t\2\t/' admin2Codes.txt | $PSQL "\copy admin2_codes FROM STDIN DELIMITER E'\t' CSV QUOTE E'\b'"
+
+$PSQL "\copy iso_language_codes FROM $DDIR_ABS/iso-languagecodes.txt DELIMITER E'\t' CSV HEADER"
+
+# $PSQL "\copy alt_names FROM $DDIR_ABS/alternateNamesV2.txt DELIMITER E'\t' CSV"

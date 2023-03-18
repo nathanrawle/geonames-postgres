@@ -3,7 +3,7 @@
 DDIR_ABS="$HOME/projects/data/sourced/geonames"
 PSQL="psql -X --username=db_maker --dbname=geonames -t --no-align -c"
 
-$PSQL "TRUNCATE TABLE geonames, feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, alt_names, iso_language_codes"
+$PSQL "TRUNCATE TABLE geonames, feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, alt_names, iso_language_codes, hierarchy, user_tags"
 
 $PSQL "\copy feature_classes FROM $DDIR_ABS/feature_classes.txt DELIMITER E'\t' CSV"
 
@@ -23,3 +23,7 @@ sed -E 's/^([A-Z]{2})\.([A-Z0-9]+)\./\1\t\2\t/' admin2Codes.txt | $PSQL "\copy a
 $PSQL "\copy iso_language_codes FROM $DDIR_ABS/iso-languagecodes.txt DELIMITER E'\t' CSV HEADER"
 
 # $PSQL "\copy alt_names FROM $DDIR_ABS/alternateNamesV2.txt DELIMITER E'\t' CSV"
+
+# $PSQL "\copy hierarchy FROM $DDIR_ABS/hierarchy.txt DELIMITER E'\t' CSV"
+
+$PSQL "\copy user_tags FROM $DDIR_ABS/userTags.txt DELIMITER E'\t' CSV QUOTE E'\b'"

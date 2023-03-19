@@ -3,7 +3,18 @@
 DDIR_ABS="$HOME/projects/data/sourced/geonames"
 PSQL="psql -X --username=db_maker --dbname=geonames -t --no-align -c"
 
-$PSQL "TRUNCATE TABLE geonames, feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, alt_names, iso_language_codes, hierarchy, user_tags"
+if [[ $1 == '--full-repop' ]]
+then
+    $PSQL "TRUNCATE TABLE geonames, feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, alt_names, iso_language_codes, hierarchy, user_tags"
+    
+    $PSQL "ALTER TABLE geonames ADD COLUMN IF NOT EXISTS alt_name varchar(20000)"
+    $PSQL "\copy geonames (geoname_id,geoname,asciiname,alt_name,latitude,longitude,feature_class,feature_code,country_code,alt_country_code,admin1_code,admin2_code,admin3_code,admin4_code,population,elevation,dem,timezone,gn_modification_date) FROM $DDIR_ABS/allCountries.txt DELIMITER E'\t' CSV QUOTE E'\b'"
+    $PSQL "ALTER TABLE geonames DROP COLUMN alt_name"
+    
+    $PSQL "\copy alt_names FROM $DDIR_ABS/alternateNamesV2.txt DELIMITER E'\t' CSV"
+else
+    $PSQL "TRUNCATE TABLE feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, alt_names, iso_language_codes, hierarchy, user_tags"
+fi
 
 $PSQL "\copy feature_classes FROM $DDIR_ABS/feature_classes.txt DELIMITER E'\t' CSV"
 
@@ -15,15 +26,11 @@ sed -E 's/^([A-Z]{2})\./\1\t/' admin1CodesASCII.txt | $PSQL "\copy admin1_codes 
 
 $PSQL "\copy timezones FROM $DDIR_ABS/timeZones.txt DELIMITER E'\t' CSV HEADER"
 
-awk -F $'\t' '{ print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10 "\t" $11 "\t" $12 "\t" $13 "\t" $14 "\t" $15 "\t" $16 "\t" $17 "\t" $18 "\t" $19 }' cities500_test.txt \
-| $PSQL "\copy geonames FROM STDIN DELIMITER E'\t' CSV"
-
 sed -E 's/^([A-Z]{2})\.([A-Z0-9]+)\./\1\t\2\t/' admin2Codes.txt | $PSQL "\copy admin2_codes FROM STDIN DELIMITER E'\t' CSV QUOTE E'\b'"
 
 $PSQL "\copy iso_language_codes FROM $DDIR_ABS/iso-languagecodes.txt DELIMITER E'\t' CSV HEADER"
 
-# $PSQL "\copy alt_names FROM $DDIR_ABS/alternateNamesV2.txt DELIMITER E'\t' CSV"
-
-# $PSQL "\copy hierarchy FROM $DDIR_ABS/hierarchy.txt DELIMITER E'\t' CSV"
+sort -u -k1,2 hierarchy.txt \
+| $PSQL "\copy hierarchy FROM STDIN DELIMITER E'\t' CSV"
 
 $PSQL "\copy user_tags FROM $DDIR_ABS/userTags.txt DELIMITER E'\t' CSV QUOTE E'\b'"

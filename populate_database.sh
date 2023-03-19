@@ -13,7 +13,7 @@ then
     
     $PSQL "\copy alt_names FROM $DDIR_ABS/alternateNamesV2.txt DELIMITER E'\t' CSV"
 else
-    $PSQL "TRUNCATE TABLE feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, alt_names, iso_language_codes, hierarchy, user_tags"
+    $PSQL "TRUNCATE TABLE feature_classes, feature_codes, country_info, admin1_codes, admin2_codes, timezones, iso_language_codes, hierarchy, user_tags"
 fi
 
 $PSQL "\copy feature_classes FROM $DDIR_ABS/feature_classes.txt DELIMITER E'\t' CSV"

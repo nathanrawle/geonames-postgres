@@ -7,3 +7,10 @@ cities500.txt
 countryInfo.txt
 main_table_descriptions.csv
 featureCodes_en.txt
+timeZones.txt
+no-country/
+iso-languagecodes.txt
+alternateNamesV2/
+allCountries.txt
+hierarchy.txt
+userTags.txt

@@ -13,7 +13,11 @@ Scripts to initialise schemas and load data from genomes.org gazetteer data into
     - hierarchy.zip
     - userTags.txt
 2. Extract all .zip files
-3. Run the following commands:
+3. Log in to psql and add the user "geonames" to your postgres cluster:
+```sql
+CREATE USER geonames;
+```
+4. Run the following commands:
 ```sh
 # create database and define schemas
 psql -f init.sql

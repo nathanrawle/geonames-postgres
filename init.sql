@@ -16,12 +16,15 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+DROP DATABASE geonames;
 --
--- Name: geonames; Type: DATABASE; Schema: -; Owner: -
+-- Name: geonames; Type: DATABASE; Schema: -; Owner: geonames
 --
 
 CREATE DATABASE geonames WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'C';
 
+
+ALTER DATABASE geonames OWNER TO geonames;
 
 \connect geonames
 
@@ -41,7 +44,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: admin1_codes; Type: TABLE; Schema: public; Owner: -
+-- Name: admin1_codes; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.admin1_codes (
@@ -53,8 +56,10 @@ CREATE TABLE public.admin1_codes (
 );
 
 
+ALTER TABLE public.admin1_codes OWNER TO geonames;
+
 --
--- Name: admin2_codes; Type: TABLE; Schema: public; Owner: -
+-- Name: admin2_codes; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.admin2_codes (
@@ -67,8 +72,10 @@ CREATE TABLE public.admin2_codes (
 );
 
 
+ALTER TABLE public.admin2_codes OWNER TO geonames;
+
 --
--- Name: alt_names; Type: TABLE; Schema: public; Owner: -
+-- Name: alt_names; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.alt_names (
@@ -85,8 +92,10 @@ CREATE TABLE public.alt_names (
 );
 
 
+ALTER TABLE public.alt_names OWNER TO geonames;
+
 --
--- Name: country_info; Type: TABLE; Schema: public; Owner: -
+-- Name: country_info; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.country_info (
@@ -112,8 +121,10 @@ CREATE TABLE public.country_info (
 );
 
 
+ALTER TABLE public.country_info OWNER TO geonames;
+
 --
--- Name: feature_classes; Type: TABLE; Schema: public; Owner: -
+-- Name: feature_classes; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.feature_classes (
@@ -122,8 +133,10 @@ CREATE TABLE public.feature_classes (
 );
 
 
+ALTER TABLE public.feature_classes OWNER TO geonames;
+
 --
--- Name: feature_codes; Type: TABLE; Schema: public; Owner: -
+-- Name: feature_codes; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.feature_codes (
@@ -134,8 +147,10 @@ CREATE TABLE public.feature_codes (
 );
 
 
+ALTER TABLE public.feature_codes OWNER TO geonames;
+
 --
--- Name: geonames; Type: TABLE; Schema: public; Owner: -
+-- Name: geonames; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.geonames (
@@ -160,8 +175,10 @@ CREATE TABLE public.geonames (
 );
 
 
+ALTER TABLE public.geonames OWNER TO geonames;
+
 --
--- Name: hierarchy; Type: TABLE; Schema: public; Owner: -
+-- Name: hierarchy; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.hierarchy (
@@ -171,8 +188,10 @@ CREATE TABLE public.hierarchy (
 );
 
 
+ALTER TABLE public.hierarchy OWNER TO geonames;
+
 --
--- Name: iso_language_codes; Type: TABLE; Schema: public; Owner: -
+-- Name: iso_language_codes; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.iso_language_codes (
@@ -183,8 +202,10 @@ CREATE TABLE public.iso_language_codes (
 );
 
 
+ALTER TABLE public.iso_language_codes OWNER TO geonames;
+
 --
--- Name: timezones; Type: TABLE; Schema: public; Owner: -
+-- Name: timezones; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.timezones (
@@ -196,8 +217,10 @@ CREATE TABLE public.timezones (
 );
 
 
+ALTER TABLE public.timezones OWNER TO geonames;
+
 --
--- Name: user_tags; Type: TABLE; Schema: public; Owner: -
+-- Name: user_tags; Type: TABLE; Schema: public; Owner: geonames
 --
 
 CREATE TABLE public.user_tags (
@@ -206,8 +229,10 @@ CREATE TABLE public.user_tags (
 );
 
 
+ALTER TABLE public.user_tags OWNER TO geonames;
+
 --
--- Name: admin1_codes admin1_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: admin1_codes admin1_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.admin1_codes
@@ -215,7 +240,7 @@ ALTER TABLE ONLY public.admin1_codes
 
 
 --
--- Name: admin2_codes admin2_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: admin2_codes admin2_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.admin2_codes
@@ -223,7 +248,7 @@ ALTER TABLE ONLY public.admin2_codes
 
 
 --
--- Name: alt_names alt_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: alt_names alt_names_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.alt_names
@@ -231,7 +256,7 @@ ALTER TABLE ONLY public.alt_names
 
 
 --
--- Name: country_info country_info_country_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: country_info country_info_country_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.country_info
@@ -239,7 +264,7 @@ ALTER TABLE ONLY public.country_info
 
 
 --
--- Name: country_info country_info_fips_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: country_info country_info_fips_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.country_info
@@ -247,7 +272,7 @@ ALTER TABLE ONLY public.country_info
 
 
 --
--- Name: country_info country_info_geoname_id_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: country_info country_info_geoname_id_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.country_info
@@ -255,7 +280,7 @@ ALTER TABLE ONLY public.country_info
 
 
 --
--- Name: country_info country_info_iso3_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: country_info country_info_iso3_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.country_info
@@ -263,7 +288,7 @@ ALTER TABLE ONLY public.country_info
 
 
 --
--- Name: country_info country_info_iso_numeric_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: country_info country_info_iso_numeric_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.country_info
@@ -271,7 +296,7 @@ ALTER TABLE ONLY public.country_info
 
 
 --
--- Name: country_info country_info_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: country_info country_info_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.country_info
@@ -279,7 +304,7 @@ ALTER TABLE ONLY public.country_info
 
 
 --
--- Name: feature_classes feature_classes_feature_class_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: feature_classes feature_classes_feature_class_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.feature_classes
@@ -287,7 +312,7 @@ ALTER TABLE ONLY public.feature_classes
 
 
 --
--- Name: feature_codes feature_codes_feature_code_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: feature_codes feature_codes_feature_code_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.feature_codes
@@ -295,7 +320,7 @@ ALTER TABLE ONLY public.feature_codes
 
 
 --
--- Name: feature_codes feature_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: feature_codes feature_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.feature_codes
@@ -303,7 +328,7 @@ ALTER TABLE ONLY public.feature_codes
 
 
 --
--- Name: geonames geonames_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: geonames geonames_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.geonames
@@ -311,7 +336,7 @@ ALTER TABLE ONLY public.geonames
 
 
 --
--- Name: hierarchy hierarchy_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: hierarchy hierarchy_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.hierarchy
@@ -319,7 +344,7 @@ ALTER TABLE ONLY public.hierarchy
 
 
 --
--- Name: iso_language_codes iso_language_codes_iso_639_1_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: iso_language_codes iso_language_codes_iso_639_1_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.iso_language_codes
@@ -327,7 +352,7 @@ ALTER TABLE ONLY public.iso_language_codes
 
 
 --
--- Name: iso_language_codes iso_language_codes_iso_639_2_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: iso_language_codes iso_language_codes_iso_639_2_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.iso_language_codes
@@ -335,7 +360,7 @@ ALTER TABLE ONLY public.iso_language_codes
 
 
 --
--- Name: iso_language_codes iso_language_codes_iso_639_3_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: iso_language_codes iso_language_codes_iso_639_3_key; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.iso_language_codes
@@ -343,7 +368,7 @@ ALTER TABLE ONLY public.iso_language_codes
 
 
 --
--- Name: timezones timezones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: timezones timezones_pkey; Type: CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.timezones
@@ -351,7 +376,7 @@ ALTER TABLE ONLY public.timezones
 
 
 --
--- Name: admin2_codes admin2_codes_country_code_admin1_code_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: admin2_codes admin2_codes_country_code_admin1_code_fkey; Type: FK CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.admin2_codes
@@ -359,7 +384,7 @@ ALTER TABLE ONLY public.admin2_codes
 
 
 --
--- Name: alt_names alt_names_geoname_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: alt_names alt_names_geoname_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.alt_names
@@ -367,7 +392,7 @@ ALTER TABLE ONLY public.alt_names
 
 
 --
--- Name: feature_codes feature_codes_feature_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: feature_codes feature_codes_feature_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: geonames
 --
 
 ALTER TABLE ONLY public.feature_codes
